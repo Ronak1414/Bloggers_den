@@ -1,0 +1,157 @@
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <title>Blogs</title>
+  </head>
+  <body>
+    <header>
+      <h1>Blogger's Den</h1>
+    </header>
+  
+
+
+
+
+
+    <div class="container">
+      <div class="form-container">
+              <center>
+        <h2>Let your voice be heard and make a difference</h2>
+                <h4>  Write a new post:</h4>
+        <form id="my-form">
+          <label for="name">Title:</label>
+          <input type="text" id="name" name="name" required>
+          <label for="content">Content:</label>
+          <textarea id="content" name="content" required></textarea>
+                  <br>
+          <input type="submit" value="Submit">
+        </form>
+      </div>
+      
+      <div class="cards-container" id="cards-container">
+          </center>
+      </div>
+    </div>
+  </div>
+</form>
+<div class="cards-container" id="cards-container">
+<div class="card" style="width: 18rem;">
+  <div class="card-body">
+    <h3 class="card-title"><center>Mental Health</center></h3>
+    <p class="card-text">Mental health is an essential part of overall health and well-being. It affects how we think, feel, and act, and influences how we handle stress, relate to others, and make choices. Good mental health is important for a fulfilling and meaningful life, and seeking help when needed is a sign of strength.</p>
+    
+  </div>
+  
+</div>
+<div class="card" style="width: 18rem;">
+  <div class="card-body">
+    <h3 class="card-title"><center>Mahendra Singh Dhoni</center></h3>
+    <p class="card-text">Mahendra Singh Dhoni, commonly known as MSD, is a retired Indian cricketer and former captain of the Indian national cricket team. Widely regarded as one of the greatest cricketing captains of all time, he led India to many memorable victories, including the 2007 ICC World Twenty20, the 2010 and 2016 Asia Cups, and the 2011 ICC Cricket World Cup. He is also known for his calm demeanor and tactical acumen on the field.<p>
+    
+  </div>
+  
+</div>
+<div class="card" style="width: 18rem;">
+  <div class="card-body">
+    <h3 class="card-title"><center>database management system </center></h3>
+    <p class="card-text">A database management system (DBMS) is a software application that allows users to create, access, update, and manage databases. It provides a way to organize, store, and retrieve data efficiently and effectively. DBMSs are widely used in businesses, government agencies, and other organizations to manage large amounts of data and make informed decisions.</p>
+    
+  </div>
+  
+</div>
+<div class="card" style="width: 18rem;">
+  <div class="card-body">
+    <h3 class="card-title">Quantum computing</h3>
+    <p class="card-text">Quantum computing is a rapidly evolving field that leverages quantum mechanics to create new ways of solving problems. By utilizing quantum bits, or qubits, it can perform calculations exponentially faster than classical computers. This technology is expected to have a significant impact on fields such as cryptography, chemistry, and artificial intelligence.</p>
+    
+  </div>
+  
+</div>
+</div>
+
+
+    <script type="module">
+
+
+
+      // Import the functions you need from the SDKs you need
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-app.js";
+      import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-analytics.js";
+      import { getDatabase, ref, push } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-database.js";
+
+      // Your web app's Firebase configuration
+      // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+      const firebaseConfig = {
+        apiKey: "AIzaSyCUG4GBXQpOetNj4Zn46Dfi28OSqZxoyRs",
+    authDomain: "fir-6e048.firebaseapp.com",
+    databaseURL: "https://fir-6e048-default-rtdb.firebaseio.com",
+    projectId: "fir-6e048",
+    storageBucket: "fir-6e048.appspot.com",
+    messagingSenderId: "438752531439",
+    appId: "1:438752531439:web:c19ec93d57ad117c611c1a",
+    measurementId: "G-CPL1RWH9JH"
+      };
+
+      // Initialize Firebase
+      const app = initializeApp(firebaseConfig);
+      const analytics = getAnalytics(app);
+
+      // Get a reference to the database
+      const database = getDatabase();
+
+      // Listen for form submit event
+      const form = document.getElementById('my-form');
+      const cardsContainer = document.getElementById('cards-container');
+      form.addEventListener('submit', (event) => {
+        event.preventDefault();
+
+
+
+
+        event.preventDefault();
+			const name = form.name.value;
+			const content = form.content.value;
+
+			// Create a new card
+			const card = document.createElement('div');
+			card.classList.add('card');
+			const cardname = document.createElement('h3');
+			cardname.innerText = name;
+			const cardContent = document.createElement('p');
+			cardContent.innerText = content;
+			card.appendChild(cardname);
+			card.appendChild(cardContent);
+
+			// Add the card to the container
+			cardsContainer.appendChild(card);
+
+			
+        
+      
+
+        // Add the data to the database
+        push(ref(database, 'users'), {
+          name: name,
+          content: content
+        });
+
+        
+
+        // Clear the form inputs
+        form.name.value = '';
+        form.content.value = '';
+
+
+
+      });
+    </script>
+  </body>
+</html>
+
+
+	
+
+
+
+		
